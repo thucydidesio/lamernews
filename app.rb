@@ -77,7 +77,7 @@ get '/' do
     H.set_title "#{SiteName} - #{SiteDescription}"
     news,numitems = get_top_news
     H.page {
-        H.h3 {"Top news"}+news_list_to_html(news)
+        H.h2 {"Top news"}+news_list_to_html(news)
     }
 end
 
