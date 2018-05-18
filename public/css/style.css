@@ -24,6 +24,11 @@ li {
 }
 
 header {
+    /* header drop-shadow */
+    -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    /* original sections */
     font-family: "Crimson Text", "Times New Roman", Times, serif;
     display:block;
     position:relative;
@@ -72,16 +77,8 @@ nav {
 
 nav a {
     margin-left: 20px;
-    color:#ffffff;
-}
-
-#account {
-    color:#aaa;
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    font-weight:bold;
     font-size:14px;
+    color: #ffffff
 }
 
 #account a {
