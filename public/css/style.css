@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    font-family: "Crimson Text", "Times New Roman", Times, serif;
     text-rendering: optimizeLegibility;
 }
 
@@ -21,26 +24,28 @@ li {
 }
 
 header {
+    font-family: "Crimson Text", "Times New Roman", Times, serif;
     display:block;
     position:relative;
-    padding: 15px 0px 0px 15px;
-    background-color:#eee;
+    padding: 15px;
+    /* padding: 15px 0px 0px 15px; */
+    background-color:#000000;
     border-bottom: 1px #ccc solid;
 }
 
 header h1 {
     display: inline;
-    font-size:1.3em;
+    font-size:1.1em;
     font-weight:bold;
-    color:#333;
+    color:#ffffff;
 }
 
 header h1 a {
-    color:#333;
+    color:#ffffff;
 }
 
 header h1 small {
-    font-size: 14px;
+    font-size: 10.5px;
 }
 
 #content {
@@ -62,10 +67,12 @@ footer {
 nav {
     margin-bottom:15px;
     display: inline;
+    color:#ffffff;
 }
 
 nav a {
     margin-left: 20px;
+    color:#ffffff;
 }
 
 #account {
