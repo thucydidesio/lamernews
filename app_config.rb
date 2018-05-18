@@ -1,7 +1,7 @@
 # General
-SiteName = "Lamer News"
-SiteUrl = "http://lamernews.com"
-SiteDescription = "Programming News"
+SiteName = "Thucydides"
+SiteUrl = "http://thucydides.io"
+SiteDescription = "Foreign Policy News"
 
 # Redis config
 RedisURL = "redis://127.0.0.1:6379"
