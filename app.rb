@@ -218,17 +218,17 @@ get '/login' do
     H.page {
         H.div(:id => "login") {
             H.form(:name=>"f") {
-                H.label(:for => "username") {"username"}+
-                H.inputtext(:id => "username", :name => "username")+
-                H.label(:for => "password") {"password"}+
-                H.inputpass(:id => "password", :name => "password")+H.br+
+                H.label(:for => "username") {"Username"}+
+                H.inputtext(:id => "username", :name => "Username")+H.br+
+                H.label(:for => "password") {"Password"}+
+                H.inputpass(:id => "password", :name => "Password")+H.br+
                 H.checkbox(:name => "register", :value => "1")+
-                "create account"+H.br+
+                "Create account"+H.br+
                 H.submit(:name => "do_login", :value => "Login")
             }
         }+
         H.div(:id => "errormsg"){}+
-        H.a(:href=>"/reset-password") {"reset password"}+
+        H.a(:href=>"/reset-password") {"Reset password"}+
         H.script() {'
             $(function() {
                 $("form[name=f]").submit(login);
@@ -1037,7 +1037,6 @@ end
 def application_header
     navitems = [    ["Top","/"],
                     ["Latest","/latest/0"],
-                    ["Random","/random"],
                     ["Submit","/submit"]]
     navbar = H.nav {
         navitems.map{|ni|
@@ -1672,7 +1671,7 @@ def news_to_html(news)
         }+" "+
         H.address {
             if domain
-                "at "+H.entities(domain)
+                "  ("+H.entities(domain)+")  "
             else "" end +
             if ($user and $user['id'].to_i == news['user_id'].to_i and
                 news['ctime'].to_i > (Time.now.to_i - NewsEditTime))

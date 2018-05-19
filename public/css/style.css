@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
 
 body {
     /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
-    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
     text-rendering: optimizeLegibility;
 }
 
@@ -14,9 +14,14 @@ a {
 }
 
 h2 {
+    font-weight: bold;
     margin-bottom:20px;
-    font-size:22px;
+    font-size:19px;
     color:#333;
+}
+
+h2 a {
+    font-weight:normal;
 }
 
 li {
@@ -29,7 +34,7 @@ header {
     -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     /* original sections */
-    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
     display:block;
     position:relative;
     padding: 15px;
@@ -40,7 +45,7 @@ header {
 
 header h1 {
     display: inline;
-    font-size:1.1em;
+    font-size:0.9em;
     font-weight:bold;
     color:#ffffff;
 }
@@ -87,7 +92,7 @@ nav {
 
 nav a {
     margin-left: 20px;
-    font-size:1.1em;
+    font-size:0.9em;
     color: #ffffff
 }
 
@@ -116,7 +121,7 @@ div #errormsg {
 
 article {
     display: block;
-    font-size: 16px;
+    font-size: 15px;
     margin-bottom:15px;
     border: 1px solid transparent;
 }
@@ -127,13 +132,14 @@ article.active {
 
 article h2 {
     display: inline;
-    font-size:20px;
+    font-size:17px;
 }
 
 article address {
     display: inline;
     color: #999;
-    font-size:14px;
+    font-size:12px;
+    margin-left: 2px;
 }
 
 article h2 a {
@@ -160,6 +166,7 @@ article .downarrow {
 article p {
     font-size:14px;
     color:#999;
+    margin-top: 5px;
     margin-left:20px;
 }
 
@@ -393,6 +400,11 @@ topcomment {
     display: none;
 }
 
+input {
+  margin-bottom: 10px;
+}
+
+/*
 @media only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px) {
 
@@ -416,4 +428,4 @@ topcomment {
         display:block;
     }
 
-}
+} */
