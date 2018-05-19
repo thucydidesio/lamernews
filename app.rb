@@ -218,10 +218,10 @@ get '/login' do
     H.page {
         H.div(:id => "login") {
             H.form(:name=>"f") {
-                H.label(:for => "username") {"Username"}+
-                H.inputtext(:id => "username", :name => "Username")+H.br+
-                H.label(:for => "password") {"Password"}+
-                H.inputpass(:id => "password", :name => "Password")+H.br+
+                H.label(:for => "username") {"username"}+
+                H.inputtext(:id => "username", :name => "username")+H.br+
+                H.label(:for => "password") {"password"}+
+                H.inputpass(:id => "password", :name => "password")+H.br+
                 H.checkbox(:name => "register", :value => "1")+
                 "Create account"+H.br+
                 H.submit(:name => "do_login", :value => "Login")
