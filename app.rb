@@ -1035,10 +1035,10 @@ def navbar_admin_link
 end
 
 def application_header
-    navitems = [    ["top","/"],
-                    ["latest","/latest/0"],
-                    ["random","/random"],
-                    ["submit","/submit"]]
+    navitems = [    ["Top","/"],
+                    ["Latest","/latest/0"],
+                    ["Random","/random"],
+                    ["Submit","/submit"]]
     navbar = H.nav {
         navitems.map{|ni|
             H.a(:href=>ni[1]) {H.entities ni[0]}
@@ -1054,15 +1054,15 @@ def application_header
                 "logout"
             }
         else
-            H.a(:href => "/login") {"login / register"}
+            H.a(:href => "/login") {"Login"}
         end
     }
     menu_mobile = H.a(:href => "#", :id => "link-menu-mobile"){"<~>"}
     H.header {
-        H.h1 {
-            H.a(:href => "/") {H.entities SiteName}+" "+
-            H.small {Version}
-        }+navbar+" "+rnavbar+" "+menu_mobile
+      H.h1 {
+          H.a(:href => "/") {H.entities SiteName}+" "+
+          H.small {Version}
+      }+navbar+" "+rnavbar+" "+menu_mobile
     }
 end
 
@@ -1109,10 +1109,10 @@ def application_footer
     end
     H.footer {
         links = [
-            ["about", "/about"],
-            ["rss feed", "/rss"],
-            ["twitter", FooterTwitterLink],
-            ["google group", FooterGoogleGroupLink]
+            ["About", "/about"],
+            ["RSS Feed", "/rss"],
+            ["Twitter", FooterTwitterLink],
+            ["Google Group", FooterGoogleGroupLink]
         ]
         links.map{|l| l[1] ?
             H.a(:href => l[1]) {H.entities l[0]} :
