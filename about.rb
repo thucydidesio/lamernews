@@ -2,9 +2,12 @@ get '/about' do
     H.set_title "About - #{SiteName}"
     H.page {
         H.div(:id => "about") {
-            H.h2 {"#{SiteName}"}+
-            H.p {"Thucydides is a news website for foreign policy professionals. It aims to surface compelling arguments and important developments in international relations and to foster meaningful conversation dialogue across countries, political affiliations, and sectors."}+
-            H.p {"The website code is forked from the " + H.a(:href => "https://github.com/antirez/lamernews") {"lamernews"} + " repo created by antirez."}
+            H.h2 {"About Us"}+
+            H.p {"Thucydides is a project created by Josiah, Rachel, and Simon--three friends from grad school with backgrounds in finance, journalism, and technology. They hope that the site can help foster intelligent and meaningful dialogue around foreign policy."}+
+            H.p {"&nbsp;&nbsp;"}+
+            H.p {"&nbsp;&nbsp;"}+
+            H.h2 {"Acknowledgements"}+
+            H.p {"The website code was forked from the " + H.a(:href => "https://github.com/antirez/lamernews") {"lamernews"} + " repo created by antirez."}
         }
     }
 end

@@ -77,7 +77,8 @@ get '/' do
     H.set_title "#{SiteName} - #{SiteDescription}"
     news,numitems = get_top_news
     H.page {
-        H.h2 {"Top discussions"}+news_list_to_html(news)
+        # H.h2 {"Top discussions"}+
+        news_list_to_html(news)
     }
 end
 
@@ -117,7 +118,7 @@ get '/latest/:start' do
         :link => "/latest/$"
     }
     H.page {
-        H.h2 {"Latest discussions"}+
+        # H.h2 {"Latest discussions"}+
         H.section(:id => "newslist") {
             list_items(paginate)
         }
@@ -216,6 +217,7 @@ end
 get '/login' do
     H.set_title "Login - #{SiteName}"
     H.page {
+        H.h2 {"Log in to submit or discuss articles"}+
         H.div(:id => "login") {
             H.form(:name=>"f") {
                 H.label(:for => "username") {"username"}+
@@ -224,7 +226,7 @@ get '/login' do
                 H.inputpass(:id => "password", :name => "password")+H.br+
                 H.checkbox(:name => "register", :value => "1")+
                 "Create account"+H.br+
-                H.submit(:name => "do_login", :value => "Login")
+                H.submit(:name => "do_login", :value => "Log in")
             }
         }+
         H.div(:id => "errormsg"){}+
@@ -1037,6 +1039,7 @@ end
 def application_header
     navitems = [    ["Top","/"],
                     ["Latest","/latest/0"],
+                    ["Jobs", "/about"],
                     ["Submit","/submit"]]
     navbar = H.nav {
         navitems.map{|ni|
@@ -1053,10 +1056,10 @@ def application_header
                 "logout"
             }
         else
-            H.a(:href => "/login") {"Login"}
+            H.a(:href => "/login") {"Log in"}
         end
     }
-    menu_mobile = H.a(:href => "#", :id => "link-menu-mobile"){"<~>"}
+    menu_mobile = H.a(:href => "#", :id => "link-menu-mobile"){"&#9776;"}
 
     H.header {
       H.div(:id => "header_sub"){
@@ -1665,12 +1668,13 @@ def news_to_html(news)
     end
     H.article("data-news-id" => news["id"]) {
       H.div(:id => "art_left"){
-          "256"
+          news["up"]
+          # "256"
       }+
       H.div(:id => "art_right"){
-          H.a(:href => "#up", :class => upclass) {
-              "&#9650;"
-          }+" "+
+          # H.a(:href => "#up", :class => upclass) {
+          #     "&#9650;"
+          # }+" "+
           H.h2 {
               H.a(:href=>news["url"], :rel => "nofollow") {
                   H.entities news["title"]
@@ -1687,24 +1691,27 @@ def news_to_html(news)
                   }
               else "" end
         }+
+        H.a(:href => "#up", :class => upclass) {
+             "&#9650;"
+         }+" "+
         H.a(:href => "#down", :class =>  downclass) {
             "&#9660;"
         }+
         H.p {
             # H.span(:class => :upvotes) { news["up"] } + " up and " +
             # H.span(:class => :downvotes) { news["down"] } + " down, by " +
-            "Started by " + 
+            "Started by " +
             H.username {
                 H.a(:href=>"/user/"+URI.encode(news["username"])) {
                     H.entities news["username"]
                 }
-            }+" "+str_elapsed(news["ctime"].to_i)+" "+
+            }+" "+str_elapsed(news["ctime"].to_i)+" | "+
             H.a(:href => "/news/#{news["id"]}") {
                 comments_number = news["comments"].to_i
                 if comments_number != 0
                     "#{news["comments"] + ' comment'}" + "#{'s' if comments_number>1}"
                 else
-                    "discuss"
+                    "Discuss"
                 end
             }+
             if $user and user_is_admin?($user)
