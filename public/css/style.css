@@ -98,18 +98,20 @@ header h1 small {
     margin-bottom: 2em; /* set to .09em if header not made to always show */
     margin-left: auto;
     margin-right: auto;
-    padding: 15px;
+    padding: 15px 30px 15px 15px;
     background-color: #ffffff;
 }
 
 footer {
     display:block;
+    background-color: #eee9e3;
     border-top: 1px #ccc solid;
     text-align: center;
-    color:#ccc;
-    font-size:14px;
-    margin-bottom:30px;
-    padding-top:4px;
+    color: #000000;
+    font-family: "Josefin Sans", sans-serif;
+    font-size:12px;
+    padding-bottom: 9px;
+    padding-top:9px;
 }
 
 nav {
@@ -130,13 +132,12 @@ nav a:hover {
 
 #account {
     float: right;
-    margin-top: 6px;
+    margin-top: 3px;
     margin-bottom: 0px;
 }
 
 #account a {
     margin-left:10px;
-    margin-right:5px;
 }
 
 #login,#submitform {
@@ -452,7 +453,7 @@ input {
   color: #15B371;
   font-size: 110%;
   font-weight: 700;
-  width:65px;
+  width:60px;
   text-align: center;
   margin-top: 2px;
   display:table-cell;
@@ -483,13 +484,26 @@ input {
 
     header nav.active {
         display: block;
+        text-align: center;
     }
     header nav a{
+        margin-top: 7px;
         display: block;
     }
 
     #link-menu-mobile{
         display:block;
+    }
+
+    #account {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    float: none;
+    margin-left: 20px;
+    }
+
+    #account a {
+    margin-left: 0px;
     }
 
 }
