@@ -77,7 +77,7 @@ get '/' do
     H.set_title "#{SiteName} - #{SiteDescription}"
     news,numitems = get_top_news
     H.page {
-        H.h2 {"Top news"}+news_list_to_html(news)
+        H.h2 {"Top discussions"}+news_list_to_html(news)
     }
 end
 
@@ -106,7 +106,7 @@ end
 
 get '/latest/:start' do
     start = params[:start].to_i
-    H.set_title "Latest news - #{SiteName}"
+    H.set_title "Latest discussions - #{SiteName}"
     paginate = {
         :get => Proc.new {|start,count|
             get_latest_news(start,count)
@@ -117,7 +117,7 @@ get '/latest/:start' do
         :link => "/latest/$"
     }
     H.page {
-        H.h2 {"Latest news"}+
+        H.h2 {"Latest discussions"}+
         H.section(:id => "newslist") {
             list_items(paginate)
         }
@@ -1057,11 +1057,14 @@ def application_header
         end
     }
     menu_mobile = H.a(:href => "#", :id => "link-menu-mobile"){"<~>"}
+
     H.header {
-      H.h1 {
-          H.a(:href => "/") {H.entities SiteName}+" "+
-          H.small {Version}
-      }+navbar+" "+rnavbar+" "+menu_mobile
+      H.div(:id => "header_sub"){
+        H.h1 {
+            H.a(:href => "/") {H.entities SiteName}+" "+
+            H.small {Version}
+        }+navbar+" "+rnavbar+" "+menu_mobile
+      }
     }
 end
 
@@ -1661,31 +1664,36 @@ def news_to_html(news)
         upclass << " disabled"
     end
     H.article("data-news-id" => news["id"]) {
-        H.a(:href => "#up", :class => upclass) {
-            "&#9650;"
-        }+" "+
-        H.h2 {
-            H.a(:href=>news["url"], :rel => "nofollow") {
-                H.entities news["title"]
-            }
-        }+" "+
-        H.address {
-            if domain
-                "  ("+H.entities(domain)+")  "
-            else "" end +
-            if ($user and $user['id'].to_i == news['user_id'].to_i and
-                news['ctime'].to_i > (Time.now.to_i - NewsEditTime))
-                " " + H.a(:href => "/editnews/#{news["id"]}") {
-                    "[edit]"
-                }
-            else "" end
+      H.div(:id => "art_left"){
+          "256"
+      }+
+      H.div(:id => "art_right"){
+          H.a(:href => "#up", :class => upclass) {
+              "&#9650;"
+          }+" "+
+          H.h2 {
+              H.a(:href=>news["url"], :rel => "nofollow") {
+                  H.entities news["title"]
+              }
+          }+" "+
+          H.address {
+              if domain
+                  "  ("+H.entities(domain)+")  "
+              else "" end +
+              if ($user and $user['id'].to_i == news['user_id'].to_i and
+                  news['ctime'].to_i > (Time.now.to_i - NewsEditTime))
+                  " " + H.a(:href => "/editnews/#{news["id"]}") {
+                      "[edit]"
+                  }
+              else "" end
         }+
         H.a(:href => "#down", :class =>  downclass) {
             "&#9660;"
         }+
         H.p {
-            H.span(:class => :upvotes) { news["up"] } + " up and " +
-            H.span(:class => :downvotes) { news["down"] } + " down, posted by " +
+            # H.span(:class => :upvotes) { news["up"] } + " up and " +
+            # H.span(:class => :downvotes) { news["down"] } + " down, by " +
+            "Started by " + 
             H.username {
                 H.a(:href=>"/user/"+URI.encode(news["username"])) {
                     H.entities news["username"]
@@ -1709,6 +1717,7 @@ def news_to_html(news)
             "rank: "+compute_news_rank(news).to_s+" "+
             "zset_rank: "+$r.zscore("news.top",news["id"]).to_s
         else "" end
+      }
     }+"\n"
 end
 

@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
 
 body {
     /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
     font-family: 'Crimson Text', serif;
+    /* font-family: 'Roboto', sans-serif; */
     text-rendering: optimizeLegibility;
+    background-color: #eeeeee;
 }
 
 a {
@@ -15,6 +18,8 @@ a {
 
 h2 {
     font-weight: bold;
+    /* adding-left: 10px;
+    padding-top: 20px; */
     margin-bottom:20px;
     font-size:19px;
     color:#333;
@@ -29,29 +34,35 @@ li {
 }
 
 header {
-    /* header drop-shadow */
     -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     /* original sections */
     font-family: 'Crimson Text', serif;
-    display:block;
+    /* font-family: 'Roboto', sans-serif; */
+    /* display:block;
     position:relative;
-    padding: 15px;
+    padding: 15px; original positioning */
     /* padding: 15px 0px 0px 15px; */
-    background-color:#000000;
-    border-bottom: 1px #ccc solid;
+    background-color:#062240;
+}
+
+#header_sub {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 18px; */
 }
 
 header h1 {
     display: inline;
-    font-size:1em;
+    font-size:1.3em;
     font-weight:bold;
     color:#ffffff;
 }
 
 header h1 a {
     color:#ffffff;
+    text-decoration: underline;
 }
 
 header h1 small {
@@ -68,10 +79,15 @@ header h1 small {
 } */
 
 #content {
-    display:block;
+    /* display:block;
     margin-top:8px;
     margin-bottom:20px;
+    padding: 15px; */
+    display:block;
+    max-width: 760px;
+    margin: 0.9em auto;
     padding: 15px;
+    background-color: #ffffff;
 }
 
 footer {
@@ -93,7 +109,7 @@ nav {
 nav a {
     margin-left: 20px;
     font-size:1em;
-    color: #ffffff
+    color: #ffffff;
 }
 
 #account a {
@@ -123,7 +139,9 @@ article {
     display: block;
     font-size: 15px;
     margin-bottom:15px;
-    border: 1px solid transparent;
+    padding-bottom:15px;
+    /* original border: 1px solid transparent; */
+    border-bottom: 1px solid #eee;
 }
 
 article.active {
@@ -167,7 +185,8 @@ article p {
     font-size:14px;
     color:#999;
     margin-top: 5px;
-    margin-left:20px;
+    margin-left: 0px;
+    /* original: margin-left:20px; */
 }
 
 article p a {
@@ -402,6 +421,26 @@ topcomment {
 
 input {
   margin-bottom: 10px;
+}
+
+/* trying to add number box to left of articles */
+
+#art_left {
+  font-family: 'Roboto', sans-serif;
+  color: #15B371;
+  font-size: 110%; 
+  font-weight: 700;
+  width:65px;
+  text-align: center;
+  margin-top: 2px;
+  display:table-cell;
+  vertical-align:middle;
+  position:relative;
+}
+
+#art_right {
+  display: table-cell;
+  margin-left:65px;
 }
 
 /*
