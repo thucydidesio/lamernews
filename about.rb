@@ -3,7 +3,7 @@ get '/about' do
     H.page {
         H.div(:id => "about") {
             H.h2 {"About Us"}+
-            H.p {"Thucydides is a project created by three friends from grad school. They hope that the site can help foster intelligent and meaningful dialogue around foreign policy."}+
+            H.p {"Thucydides is a project created by Josiah, Rachel, and Simon--three friends from grad school. They hope that the site can help foster intelligent and meaningful dialogue around foreign policy."}+
             H.p {"&nbsp;&nbsp;"}+
             H.p {"&nbsp;&nbsp;"}+
             H.h2 {"Acknowledgements"}+

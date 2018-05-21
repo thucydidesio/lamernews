@@ -38,6 +38,7 @@ require_relative 'comments'
 require_relative 'pbkdf2'
 require_relative 'mail'
 require_relative 'about'
+require_relative 'jobs'
 require 'openssl' if UseOpenSSL
 require 'uri'
 
@@ -1041,7 +1042,7 @@ end
 def application_header
     navitems = [    ["Top","/"],
                     ["Latest","/latest/0"],
-                    ["Jobs", "/about"],
+                    ["Jobs", "/jobs"],
                     ["Submit","/submit"]]
     navbar = H.nav {
         navitems.map{|ni|
