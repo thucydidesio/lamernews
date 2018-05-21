@@ -316,12 +316,14 @@ get '/submit' do
             H.form(:name=>"f") {
                 H.inputhidden(:name => "news_id", :value => -1)+
                 H.label(:for => "title") {"title"}+
-                H.inputtext(:id => "title", :name => "title", :size => 80, :value => (params[:t] ? H.entities(params[:t]) : ""))+H.br+
+                H.br+
+                H.inputtext(:id => "title", :name => "title", :size => 60, :value => (params[:t] ? H.entities(params[:t]) : ""))+H.br+
                 H.label(:for => "url") {"url"}+H.br+
                 H.inputtext(:id => "url", :name => "url", :size => 60, :value => (params[:u] ? H.entities(params[:u]) : ""))+H.br+
-                "or if you don't have an url type some text"+
+                "(If you don't have a URL, just provide some background for your title here.)"+
                 H.br+
                 H.label(:for => "text") {"text"}+
+                H.br+
                 H.textarea(:id => "text", :name => "text", :cols => 60, :rows => 10) {}+
                 H.button(:name => "do_submit", :value => "Submit")
             }
@@ -377,8 +379,8 @@ get "/news/:news_id" do
                 H.inputhidden(:name => "news_id", :value => news["id"])+
                 H.inputhidden(:name => "comment_id", :value => -1)+
                 H.inputhidden(:name => "parent_id", :value => -1)+
-                H.textarea(:name => "comment", :cols => 60, :rows => 10) {}+H.br+
-                H.button(:name => "post_comment", :value => "Send comment")
+                H.textarea(:name => "comment", :cols => 60, :rows => 10, :class => "comment_submit_box") {}+H.br+
+                H.button(:name => "post_comment", :value => "Submit", :class => "comment_submit_button")
             }+H.div(:id => "errormsg"){}
         else
             H.br
@@ -500,7 +502,7 @@ get "/editnews/:news_id" do
                 H.label(:for => "url") {"url"}+H.br+
                 H.inputtext(:id => "url", :name => "url", :size => 60,
                             :value => H.entities(news['url']))+H.br+
-                "or if you don't have an url type some text"+
+                "(If you don't have a URL, just provide some background for your title here.)"+
                 H.br+
                 H.label(:for => "text") {"text"}+
                 H.textarea(:id => "text", :name => "text", :cols => 60, :rows => 10) {
@@ -531,11 +533,11 @@ get "/user/:username" do
     owner = $user && ($user['id'].to_i == user['id'].to_i)
     H.page {
         H.div(:class => "userinfo") {
-            H.span(:class => "avatar") {
-                email = user["email"] || ""
-                digest = Digest::MD5.hexdigest(email)
-                H.img(:src=>"//gravatar.com/avatar/#{digest}?s=48&d=mm")
-            }+" "+
+            # H.span(:class => "avatar") {
+            #    email = user["email"] || ""
+            #    digest = Digest::MD5.hexdigest(email)
+            #    H.img(:src=>"//gravatar.com/avatar/#{digest}?s=48&d=mm")
+            #}+" "+
             H.h2 {H.entities user['username']}+
             H.pre {
                 H.entities user['about']
@@ -1067,6 +1069,11 @@ def application_header
             H.a(:href => "/") {H.entities SiteName}+" "+
             H.small {Version}
         }+navbar+" "+rnavbar+" "+menu_mobile
+      }+
+      H.div(:id => "info_bar"){
+        H.p(:id => "info_bar_text") {
+          "1 / 15"
+        }
       }
     }
 end
@@ -1197,7 +1204,9 @@ def create_user(username,password)
     if $r.exists("username.to.id:#{username.downcase}")
         return nil, nil, "Username is already taken, please try a different one."
     end
-    if rate_limit_by_ip(UserCreationDelay,"create_user",request.ip)
+    # breaking the original creation delay limit for now, original condition below
+    # if rate_limit_by_ip(UserCreationDelay,"create_user",request.ip)
+    if (0 == 1)
         return nil, nil, "Please wait some time before creating a new user."
     end
     id = $r.incr("users.count")
@@ -1431,15 +1440,16 @@ def vote_news(news_id,user_id,vote_type)
        return false,"Duplicated vote."
     end
 
+    # Take out karma check for now
     # Check if the user has enough karma to perform this operation
-    if $user['id'] != news['user_id']
-        if (vote_type == :up and
-             (get_user_karma(user_id) < NewsUpvoteMinKarma)) or
-           (vote_type == :down and
-             (get_user_karma(user_id) < NewsDownvoteMinKarma))
-            return false,"You don't have enough karma to vote #{vote_type}"
-        end
-    end
+    #if $user['id'] != news['user_id']
+    #    if (vote_type == :up and
+    #         (get_user_karma(user_id) < NewsUpvoteMinKarma)) or
+    #       (vote_type == :down and
+    #         (get_user_karma(user_id) < NewsDownvoteMinKarma))
+    #        return false,"You don't have enough karma to vote #{vote_type}"
+    #    end
+    #end
 
     # News was not already voted by that user. Add the vote.
     # Note that even if there is a race condition here and the user may be
@@ -1679,10 +1689,10 @@ def news_to_html(news)
               H.a(:href=>news["url"], :rel => "nofollow") {
                   H.entities news["title"]
               }
-          }+" "+
+          }+" "+H.br+
           H.address {
               if domain
-                  "  ("+H.entities(domain)+")  "
+                  H.entities(domain)
               else "" end +
               if ($user and $user['id'].to_i == news['user_id'].to_i and
                   news['ctime'].to_i > (Time.now.to_i - NewsEditTime))
@@ -1690,17 +1700,17 @@ def news_to_html(news)
                       "[edit]"
                   }
               else "" end
-        }+
+          }+
         H.a(:href => "#up", :class => upclass) {
-             "&#9650;"
-         }+" "+
+          " &#9650;"
+        }+" "+
         H.a(:href => "#down", :class =>  downclass) {
             "&#9660;"
         }+
         H.p {
             # H.span(:class => :upvotes) { news["up"] } + " up and " +
             # H.span(:class => :downvotes) { news["down"] } + " down, by " +
-            "Started by " +
+            "by " +
             H.username {
                 H.a(:href=>"/user/"+URI.encode(news["username"])) {
                     H.entities news["username"]
@@ -1939,11 +1949,12 @@ def comment_to_html(c,u,show_parent = false)
     comment_id = "#{news_id}-#{c['id']}"
     H.article(:class => "comment", :style => indent,
               "data-comment-id" => comment_id, :id => comment_id) {
-        H.span(:class => "avatar") {
-            email = u["email"] || ""
-            digest = Digest::MD5.hexdigest(email)
-            H.img(:src=>"//gravatar.com/avatar/#{digest}?s=48&d=mm")
-        }+H.span(:class => "info") {
+        #H.span(:class => "avatar") {
+        #    email = u["email"] || ""
+        #    digest = Digest::MD5.hexdigest(email)
+        #    H.img(:src=>"//gravatar.com/avatar/#{digest}?s=48&d=mm")
+        #}+
+        H.span(:class => "info") {
             H.span(:class => "username") {
                 H.a(:href=>"/user/"+URI.encode(u["username"])) {
                     H.entities u["username"]

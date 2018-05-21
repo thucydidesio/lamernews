@@ -14,7 +14,7 @@ PasswordMinLength = 8
 # Comments
 CommentMaxLength = 4096
 CommentEditTime = 3600*2
-CommentReplyShift = 60
+CommentReplyShift = 20
 UserCommentsPerPage = 10
 SubthreadsInRepliesPage = 10
 
