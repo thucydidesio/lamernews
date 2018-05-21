@@ -183,7 +183,7 @@ article {
 }
 
 article.active {
-    background-color: #fbfaf9; 
+    background-color: #fbfaf9;
     /* background-color: #eee9e3; */
 }
 
@@ -210,6 +210,11 @@ article .uparrow, article .downarrow {
     cursor: pointer;
 }
 
+article .uparrow_2, article .downarrow_2 {
+    font-size: 16px;
+    cursor: pointer;
+}
+
 article .uparrow {
     color:#999;
 }
@@ -218,6 +223,16 @@ article .downarrow {
     color:#ccc;
 }
 
+article .uparrow_2 {
+    color: #444444;
+    background-color: #fff;
+}
+
+
+article .downarrow_2 {
+    color: #AAAAAA;
+    background-color: #fff;
+}
 
 article p {
     font-size:14px;

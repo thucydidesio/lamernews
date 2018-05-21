@@ -1,7 +1,7 @@
 # General
 SiteName = "Thucydides"
 SiteUrl = "http://thucydides.io"
-SiteDescription = "Foreign Policy News"
+SiteDescription = "A community for foreign policy analysis"
 
 # Redis config
 RedisURL = "redis://127.0.0.1:6379"
@@ -40,7 +40,8 @@ UsernameRegexp = /^[a-zA-Z][a-zA-Z0-9_\-]+$/
 
 # News and ranking
 NewsAgePadding = 3600*8
-TopNewsPerPage = 30
+# TopNewsPerPage = 30
+TopNewsPerPage = 5
 LatestNewsPerPage = 100
 NewsEditTime = 60*15
 NewsScoreLogStart = 10

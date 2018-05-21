@@ -1701,12 +1701,18 @@ def news_to_html(news)
                       "[edit]"
                   }
               else "" end
-          }+
-        H.a(:href => "#up", :class => upclass) {
-          " &#9650;"
+          }+" "+
+        # H.a(:href => "#up", :class => upclass) {
+        #  " &#9650;"
+        # }+" "+
+        # H.a(:href => "#down", :class =>  downclass) {
+        #    "&#9660;"
+        # }+
+        H.a(:href => "#up", :class => "uparrow_2") {
+          " &#160;&#160;+"
         }+" "+
-        H.a(:href => "#down", :class =>  downclass) {
-            "&#9660;"
+        H.a(:href => "#down", :class =>  "downarrow_2") {
+          " &#8212;"
         }+
         H.p {
             # H.span(:class => :upvotes) { news["up"] } + " up and " +
@@ -1987,11 +1993,16 @@ def comment_to_html(c,u,show_parent = false)
                     upclass << " disabled"
                 end
                 "#{score} point"+"#{'s' if score.to_i.abs>1}"+" "+
-                H.a(:href => "#up", :class => upclass) {
-                    "&#9650;"
+                # H.a(:href => "#up", :class => upclass) {
+                #    "&#9650;"
+                # }+" "+
+                # H.a(:href => "#down", :class => downclass) {
+                #    "&#9660;"
+                H.a(:href => "#up", :class => "uparrow_2") {
+                  " &#160;&#160;+"
                 }+" "+
-                H.a(:href => "#down", :class => downclass) {
-                    "&#9660;"
+                H.a(:href => "#down", :class =>  "downarrow_2") {
+                  " &#8212;"
                 }
             else " " end +
             if show_edit_link
