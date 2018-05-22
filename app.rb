@@ -1066,14 +1066,21 @@ def application_header
 
     H.header {
       H.div(:id => "header_sub"){
-        H.h1 {
-            H.a(:href => "/") {H.entities SiteName}+" "+
-            H.small {Version}
-        }+navbar+" "+rnavbar+" "+menu_mobile
+        # original title and version on next four lines
+        # H.h1 {
+        #    H.a(:href => "/") {H.entities SiteName}+" "+
+        #    H.small {Version}
+        # }+
+        H.a(:href => "/") {
+          H.img(:src => "../images/logo_test.png", :id => "header_img"){
+            }
+          }+
+          navbar+" "+rnavbar+" "+menu_mobile
       }+
       H.div(:id => "info_bar"){
         H.p(:id => "info_bar_text") {
-          "1 / 15"
+          "<<&#160;&#160;&#160;&#160;&#160;&#160; 1 / 8 &#160;&#160;&#160;&#160;&#160;&#160;>>"
+          # H.span {"#{$r.zcard("news.cron")} articles posted"}
         }
       }
     }
@@ -1679,7 +1686,7 @@ def news_to_html(news)
     end
     H.article("data-news-id" => news["id"]) {
       H.div(:id => "art_left"){
-          news["up"]
+          news["score"]
           # "256"
       }+
       H.div(:id => "art_right"){
@@ -1702,17 +1709,11 @@ def news_to_html(news)
                   }
               else "" end
           }+" "+
-        # H.a(:href => "#up", :class => upclass) {
-        #  " &#9650;"
-        # }+" "+
-        # H.a(:href => "#down", :class =>  downclass) {
-        #    "&#9660;"
-        # }+
-        H.a(:href => "#up", :class => "uparrow_2") {
+        H.a(:href => "#up", :class => upclass) {
           " &#160;&#160;+"
         }+" "+
-        H.a(:href => "#down", :class =>  "downarrow_2") {
-          " &#8212;"
+        H.a(:href => "#down", :class =>  downclass) {
+            " &#8212;"
         }+
         H.p {
             # H.span(:class => :upvotes) { news["up"] } + " up and " +
@@ -1790,7 +1791,7 @@ end
 # Generate the main page of the web site, the one where news are ordered by
 # rank.
 #
-# As a side effect thsi function take care of checking if the rank stored
+# As a side effect this function takes care of checking if the rank stored
 # in the DB is no longer correct (as time is passing) and updates it if
 # needed.
 #
@@ -1993,16 +1994,11 @@ def comment_to_html(c,u,show_parent = false)
                     upclass << " disabled"
                 end
                 "#{score} point"+"#{'s' if score.to_i.abs>1}"+" "+
-                # H.a(:href => "#up", :class => upclass) {
-                #    "&#9650;"
-                # }+" "+
-                # H.a(:href => "#down", :class => downclass) {
-                #    "&#9660;"
-                H.a(:href => "#up", :class => "uparrow_2") {
+                H.a(:href => "#up", :class => upclass) {
                   " &#160;&#160;+"
                 }+" "+
-                H.a(:href => "#down", :class =>  "downarrow_2") {
-                  " &#8212;"
+                H.a(:href => "#down", :class =>  downclass) {
+                    " &#8212;"
                 }
             else " " end +
             if show_edit_link
