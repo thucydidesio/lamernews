@@ -1700,7 +1700,9 @@ def news_to_html(news)
           }+" "+H.br+
           H.address {
               if domain
+                H.a(:href=>news["url"], :rel => "nofollow") {
                   H.entities(domain)
+                }
               else "" end +
               if ($user and $user['id'].to_i == news['user_id'].to_i and
                   news['ctime'].to_i > (Time.now.to_i - NewsEditTime))

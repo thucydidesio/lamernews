@@ -207,6 +207,10 @@ article address {
     color: #999;
 }
 
+article address a {
+    color: #999;
+}
+
 article h2 a {
     color: black;
     font-weight: normal;
@@ -218,8 +222,13 @@ article h2 a:visited {
 }
 
 article .uparrow, article .downarrow {
-  font-size: 16px;
+  font-size: 15px;
+  font-family: Roboto, sans-serif;
   cursor: pointer;
+}
+
+a.uparrow:hover, a.downarrow:hover {
+  font-weight: bold;
 }
 
 article .uparrow {
@@ -327,7 +336,7 @@ topcomment {
 }
 
 .singlecomment {
-    background-color: #eee;
+    background-color: #fbfaf9;
     border: 1px dotted #ccc;
     padding: 15px;
     margin:10px;
